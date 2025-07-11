@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our Services - PanInsura</title>
+<meta name="description" content="Explore insurance services at PanInsura, including health, auto, life, travel, and business insurance plans.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+<style>
+:root {
+  --primary-color: #004d99;
+  --secondary-color: #007acc;
+  --accent-color: #ff6f00;
+  --light-bg: #f9f9f9;
+  --white: #ffffff;
+  --text-color: #333;
+}
+body {
+  font-family: 'Karla', sans-serif;
+  margin: 0;
+  background: var(--light-bg);
+  color: var(--text-color);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--white);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.brand-text {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+.nav-links a {
+  margin-left: 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+h1, h2, h3 {
+  font-family: 'DM Serif Display', serif;
+  color: var(--primary-color);
+}
+section {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card button {
+  background: var(--accent-color);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.card button:hover {
+  background: #e65c00;
+}
+.btn {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+.btn:hover {
+  background: var(--secondary-color);
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: var(--white);
+  padding: 2rem;
+  max-width: 400px;
+  border-radius: 8px;
+  position: relative;
+  text-align: left;
+}
+.close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand-text">PANINSURA</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section>
+  <h1>Our Insurance Services</h1>
+  <p>Explore flexible, comprehensive insurance plans tailored to your needs.</p>
+  <div class="grid">
+
+    <div class="card" data-type="Health Insurance">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.TqmmddKJ2BqgXqCLHoSi4QHaEU?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Health Insurance" loading="lazy" style="width:80px;height:80px;margin:auto;">
+      <h3>Health Insurance</h3>
+      <p>Comprehensive health coverage for individuals and families with flexible plans.</p>
+      <button onclick="openModal('Health Insurance', 'Get coverage for medical emergencies, hospital visits, and routine care with PanInsura.')">Learn More</button>
+      <a href="insurance-form.html?type=Health Insurance" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card" data-type="Auto Insurance">
+      <img src="https://th.bing.com/th/id/OIP.vTOIChx4t5G8tKFi5MJ5yAHaEc?w=283&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Auto Insurance" loading="lazy" style="width:80px;height:80px;margin:auto;">
+      <h3>Auto Insurance</h3>
+      <p>Flexible plans to protect you and your vehicle on the road, anywhere in Europe.</p>
+      <button onclick="openModal('Auto Insurance', 'Safeguard your vehicle with collision, theft, and liability coverage from PanInsura.')">Learn More</button>
+      <a href="insurance-form.html?type=Auto Insurance" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card" data-type="Life Insurance">
+      <img src="https://th.bing.com/th/id/OIF.1BWJTuWUgu5YxoYuGA7d5Q?w=262&h=180&c=7&r=0&o=5&pid=1.7" alt="Life Insurance" loading="lazy" style="width:80px;height:80px;margin:auto;">
+      <h3>Life Insurance</h3>
+      <p>Plan confidently for your family’s future with customizable life insurance plans.</p>
+      <button onclick="openModal('Life Insurance', 'Provide financial security to your loved ones with flexible, affordable life plans.')">Learn More</button>
+      <a href="insurance-form.html?type=Life Insurance" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card" data-type="Travel Insurance">
+      <img src="https://th.bing.com/th/id/OIP.S-T_ss0P1VllYLtIrVk1PwHaE8?w=249&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Travel Insurance" loading="lazy" style="width:80px;height:80px;margin:auto;">
+      <h3>Travel Insurance</h3>
+      <p>Peace of mind for your adventures, covering medical, trip cancellations, and more.</p>
+      <button onclick="openModal('Travel Insurance', 'Travel confidently with coverage for medical emergencies, lost luggage, and trip interruptions.')">Learn More</button>
+      <a href="insurance-form.html?type=Travel Insurance" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card" data-type="Business Insurance">
+      <img src="https://th.bing.com/th/id/OIP.2X4JCNianrv0TvINxGRQWgHaE8?w=298&h=200&c=7&r=0&o=5&pid=1.7" alt="Business Insurance" loading="lazy" style="width:80px;height:80px;margin:auto;">
+      <h3>Business Insurance</h3>
+      <p>Protect your business from unforeseen risks with our comprehensive plans.</p>
+      <button onclick="openModal('Business Insurance', 'Cover your business assets, liabilities, and employees with tailored business insurance.')">Learn More</button>
+      <a href="insurance-form.html?type=Business Insurance" class="btn">Apply Now</a>
+    </div>
+   <div class="card" data-type="Income Protection">
+      <img src="https://th.bing.com/th/id/OIP.eBdMeKdUzccEEvP56Ga-YQHaE7?w=274&h=184&c=7&r=0&o=7&pid=1.7&rm=3" alt="Income Protection" loading="lazy" style="width:80px;height:80px;margin:auto;">
+      <h3>Income Protection</h3>
+      <p>Protect your business from unforeseen risks with our comprehensive plans.</p>
+      <button onclick="openModal('Income Protection', 'Cover your business assets, liabilities, and employees with tailored business insurance.')">Learn More</button>
+      <a href="insurance-form.html?type=Income Protection" class="btn">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+
+<div id="modal" class="modal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal(event)">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalBody"></p>
+  </div>
+</div>
+
+<script>
+function openModal(title, body) {
+  document.getElementById('modalTitle').innerText = title;
+  document.getElementById('modalBody').innerText = body;
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeModal(event) {
+  if (event.target.id === 'modal' || event.target.className === 'close') {
+    document.getElementById('modal').style.display = 'none';
+  }
+}
+</script>
+
+
+<section class="interactive-benefits">
+  <h2>Why Choose PanInsura?</h2>
+  <p>Seamless, innovative insurance designed around you and your family’s future.</p>
+  <div class="benefits-scroll-container">
+    <div class="benefit-card">
+      <img src="data:image/webp;base64,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" alt="24/7 Support">
+      <h3>24/7 Support</h3>
+      <p>Receive round-the-clock assistance on claims and questions with a dedicated team ready to serve you anytime.</p>
+    </div>
+    <div class="benefit-card">
+      <img src="https://th.bing.com/th/id/OIP.-SQfc29Eo_KKOJP6HrlehgHaFj?w=210&h=180&c=7&r=0&o=5&pid=1.7" alt="Affordable Premiums">
+      <h3>Affordable Premiums</h3>
+      <p>Access comprehensive insurance at rates that let you protect your future without financial stress.</p>
+    </div>
+    <div class="benefit-card">
+      <img src="data:image/webp;base64,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" alt="Customized Policies">
+      <h3>Customized Policies</h3>
+      <p>Get flexible policy options tailored to your lifestyle, family needs, and business goals.</p>
+    </div>
+    <div class="benefit-card">
+      <img src="https://th.bing.com/th/id/OIP.vPFCM_LE2npVyzdgHyEcEwHaE8?w=261&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Digital Claims">
+      <h3>Digital Claims</h3>
+      <p>File and track claims online for a faster, hassle-free experience with no unnecessary paperwork.</p>
+    </div>
+    <div class="benefit-card">
+      <img src="data:image/webp;base64,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" alt="Family Plans">
+      <h3>Family Plans</h3>
+      <p>Cover your loved ones under a single, manageable policy with affordable options for families.</p>
+    </div>
+    <div class="benefit-card">
+      <img src="data:image/webp;base64,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" alt="Risk Management">
+      <h3>Risk Management</h3>
+      <p>Gain professional insights to manage personal and business risks effectively, ensuring peace of mind.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="video-section">
+  <h2>Learn How PanInsura Works</h2>
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PanInsura Overview Video" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<section class="comparison-table">
+  <h2>Compare Our Plans</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Basic Plan</h3>
+      <ul style="text-align:left; list-style:none; padding:0;">
+        <li>✅ 24/7 Support</li>
+        <li>❌ Custom Plans</li>
+        <li>❌ Global Coverage</li>
+        <li>❌ Priority Claims</li>
+      </ul>
+      <button onclick="openModal('Basic Plan Benefits', `The Basic Plan is designed for individuals and families seeking essential insurance coverage at an affordable rate. It offers 24/7 customer support for emergencies and standard claims processing. While it does not include customization, global coverage, or priority claim handling, it ensures you have dependable, straightforward coverage without unnecessary complexity. This plan is ideal if you are just starting with insurance or need a safety net that keeps you protected without high premiums, allowing you to manage your budget confidently while staying insured.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Standard Plan</h3>
+      <ul style="text-align:left; list-style:none; padding:0;">
+        <li>✅ 24/7 Support</li>
+        <li>✅ Custom Plans</li>
+        <li>❌ Global Coverage</li>
+        <li>❌ Priority Claims</li>
+      </ul>
+      <button onclick="openModal('Standard Plan Benefits', `The Standard Plan offers a balanced approach, providing 24/7 support, the ability to customize your insurance plans based on your lifestyle or family needs, and access to a broader network of healthcare and service providers. While it does not include global coverage or priority claims, it is perfect for individuals and families seeking flexibility and more comprehensive protection within Europe. This plan allows you to adjust your policies as your needs evolve, offering peace of mind with manageable premiums and enhanced control over your insurance journey.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Premium Plan</h3>
+      <ul style="text-align:left; list-style:none; padding:0;">
+        <li>✅ 24/7 Support</li>
+        <li>✅ Custom Plans</li>
+        <li>✅ Global Coverage</li>
+        <li>✅ Priority Claims</li>
+      </ul>
+      <button onclick="openModal('Premium Plan Benefits', `The Premium Plan is PanInsura’s most comprehensive offering, providing 24/7 support, fully customizable insurance plans tailored to your unique lifestyle, and seamless global coverage for travel or relocation. It includes priority claims processing, ensuring your claims are handled quickly with minimal disruption to your life or business. This plan is ideal for frequent travelers, business owners, or individuals seeking the highest level of protection and convenience. It offers the flexibility to adjust your policy anytime, ensuring you remain protected as your life and responsibilities grow.`)">Learn More</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="case-studies">
+  <h2>Success Stories</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Anna's Auto Claim Success</h3>
+      <p>Quick, seamless auto claim after a minor accident in Paris.</p>
+      <button onclick="openModal('Anna\'s Auto Claim Success', `Anna, a graphic designer in Paris, faced a stressful situation when her car was rear-ended on a rainy morning. She immediately contacted PanInsura and was guided step-by-step through the claims process, submitting photos and her report directly through our digital claims system. Within 48 hours, her claim was approved, and repairs were scheduled with a trusted partner garage. Anna praised the quick turnaround, clear communication, and the peace of mind she experienced during a typically frustrating event. She continues to recommend PanInsura for auto insurance, citing our personalized approach and rapid claims processing as key reasons for her loyalty.`)">Read More</button>
+    </div>
+    <div class="card">
+      <h3>Paul's Family Health Plan</h3>
+      <p>Protected his family with affordable, comprehensive health coverage.</p>
+      <button onclick="openModal('Paul\'s Family Health Plan', `Paul, a father of two in Berlin, wanted comprehensive health insurance for his family that wouldn’t break the bank. Through PanInsura’s Standard Plan, he secured routine checkups, emergency medical care, and specialist visits for his family, all while staying within his budget. When his son needed urgent care for a sports injury, the family experienced a hassle-free hospital admission with direct billing under their PanInsura plan. Paul appreciated the 24/7 support, transparency, and personalized recommendations that helped his family stay protected without financial stress. Today, Paul feels confident that his family’s health is in safe hands, allowing him to focus on creating memories with them.`)">Read More</button>
+    </div>
+    <div class="card">
+      <h3>Maria's Global Travel Coverage</h3>
+      <p>Traveled confidently with PanInsura’s worldwide travel insurance.</p>
+      <button onclick="openModal('Maria\'s Global Travel Coverage', `Maria, a travel blogger from Lisbon, needed reliable global coverage for her frequent trips across Europe and Asia. Choosing PanInsura’s Premium Travel Plan, Maria secured medical emergency coverage, trip cancellation protection, and lost luggage compensation without complicated paperwork. When she fell ill while exploring Thailand, she contacted PanInsura’s 24/7 helpline and was guided to a quality healthcare provider within hours, with expenses covered. The smooth claims process and clear guidance allowed Maria to focus on her recovery without financial worries. She now continues her adventures confidently, knowing PanInsura has her back, no matter where she goes.`)">Read More</button>
+    </div>
+    <div class="card">
+      <h3>Small Business Protection for A&B Ltd.</h3>
+      <p>Safeguarded their assets and operations with our business insurance.</p>
+      <button onclick="openModal('Small Business Protection for A&B Ltd.', `A&B Ltd., a growing digital marketing firm in Amsterdam, faced concerns about potential client disputes, cyber threats, and property damage that could disrupt their operations. PanInsura tailored a Business Insurance plan that covered liability, data breach incidents, and equipment protection, ensuring their business could operate confidently. When a minor fire damaged their office equipment, A&B Ltd. filed a claim, which was approved and processed quickly, minimizing downtime. The founders praised PanInsura’s transparent processes, affordable premiums, and risk management consultations that helped them identify vulnerabilities before incidents occurred. A&B Ltd. now feels prepared and resilient, focusing on growth without fear of setbacks.`)">Read More</button>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h1>Pricing Options</h1>
+  <div class="grid">
+    <div class="card">
+      <h3>Basic Plan</h3>
+      <p>Affordable essential coverage for individuals and small families.</p>
+      <button onclick="openModal('Basic Plan', `Our Basic Plan is crafted for individuals and small families who need essential insurance coverage without overspending. This plan includes critical health and emergency services, liability protection, and essential support to help you handle unexpected life events with confidence. While it covers the most important needs, it maintains affordability and flexibility, ensuring you are protected without high premiums. Whether you’re looking for a stepping stone into comprehensive coverage or simply want peace of mind while managing your budget, our Basic Plan is a reliable, accessible option that can grow with your needs as you transition to broader coverage in the future.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Standard Plan</h3>
+      <p>Balanced, flexible plans with expanded features for growing needs.</p>
+      <button onclick="openModal('Standard Plan', `The Standard Plan provides a comprehensive range of benefits suitable for individuals and families seeking balanced coverage without complexity. It includes advanced health and medical protection, auto and travel options, and family benefits for peace of mind. You gain access to digital claims, a broader provider network, and dedicated support services, ensuring convenience and reliability in your insurance experience. The Standard Plan is designed for those who need more than basic coverage while maintaining cost efficiency and flexibility for life’s evolving demands.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Premium Plan</h3>
+      <p>All-inclusive coverage with added benefits and priority support.</p>
+      <button onclick="openModal('Premium Plan', `Our Premium Plan offers the highest level of protection, including comprehensive health, auto, life, travel, and business insurance, with premium customer service and priority claims handling. Designed for those who value seamless, worry-free coverage, the Premium Plan includes global coverage, custom plan adjustments, family-wide benefits, and personalized risk management consultations to optimize your protection. This plan is ideal for individuals, families, or businesses that want peace of mind knowing that all areas of their lives are safeguarded with comprehensive, responsive coverage.`)">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1>Resources</h1>
+  <div class="grid">
+    <div class="card">
+      <h3>Insurance Glossary</h3>
+      <p>Understand insurance terms with our easy-to-read glossary.</p>
+      <button onclick="openModal('Insurance Glossary', `Our Insurance Glossary is a comprehensive resource to help you understand complex insurance terminology in simple, clear language. Whether you’re new to insurance or need a quick reference, this glossary includes terms related to health, auto, life, travel, and business insurance, ensuring you can navigate your policies confidently and make informed decisions for yourself, your family, or your business.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Policy Renewal Guide</h3>
+      <p>Step-by-step guide for hassle-free policy renewals.</p>
+      <button onclick="openModal('Policy Renewal Guide', `Renewing your policy should be seamless, and our Policy Renewal Guide ensures you understand the timelines, documentation, and potential adjustments you can make during your renewal. It covers key steps for reviewing coverage, assessing your current needs, and updating plans to reflect life changes, giving you confidence that your protection remains current and effective.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Coverage Checklist</h3>
+      <p>Evaluate your coverage to ensure you have the protection you need.</p>
+      <button onclick="openModal('Coverage Checklist', `Our Coverage Checklist helps you evaluate your current insurance to identify gaps and ensure you are adequately protected. This resource walks you through checking your health, auto, life, travel, and business plans, guiding you to align your coverage with your goals and circumstances. It’s a practical tool for individuals, families, and business owners looking to proactively manage their risk and protection.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Safety Tips</h3>
+      <p>Practical tips to stay safe and reduce risks in daily life.</p>
+      <button onclick="openModal('Safety Tips', `Our Safety Tips guide provides practical advice to protect yourself, your family, and your property. From health safety, vehicle maintenance, and travel preparedness to cyber safety and workplace risk management, these actionable insights empower you to reduce risks and live confidently under your PanInsura coverage.`)">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h1>Guarantees</h1>
+  <div class="grid">
+    <div class="card">
+      <h3>Money-Back Guarantee</h3>
+      <p>Full refund if you’re not satisfied within 30 days of purchase.</p>
+      <button onclick="openModal('Money-Back Guarantee', `We stand by the quality of our services, offering a 30-day money-back guarantee for new customers who find our coverage unsatisfactory within the first month. This allows you to experience the PanInsura difference risk-free, providing confidence in your decision to trust us for your insurance needs.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Lowest Price Promise</h3>
+      <p>We match lower competitor prices on comparable plans.</p>
+      <button onclick="openModal('Lowest Price Promise', `PanInsura’s Lowest Price Promise ensures that you receive the best value for your insurance plans. If you find a lower price on a comparable plan from a competitor, we will match it, helping you maintain high-quality protection without compromising on affordability. We are committed to keeping our plans accessible and competitive while delivering premium service.`)">Learn More</button>
+    </div>
+    <div class="card">
+      <h3>Fast Claims Guarantee</h3>
+      <p>Prompt claims processing for peace of mind during emergencies.</p>
+      <button onclick="openModal('Fast Claims Guarantee', `We know how important quick support is during emergencies. Our Fast Claims Guarantee ensures that your claims are processed promptly, with clear communication and updates throughout the process. Whether it’s a health, auto, or travel claim, PanInsura prioritizes your case to reduce stress and help you recover swiftly with minimal disruption.`)">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<div id="modal" class="modal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal(event)">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalBody"></p>
+  </div>
+</div>
+
+<!-- ================= PART 3: CTA + TESTIMONIALS + FOOTER ================= -->
+<section class="cta">
+  <h2>Ready to Get Covered?</h2>
+  <p>Protect what matters most today with PanInsura's tailored insurance services.</p>
+  <a href="services.html" class="btn">View Plans</a>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+  <a href="index.html" class="brand-text">PANINSURA</a>
+      <p>Protecting what matters most with innovative insurance solutions across Europe.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="plans.html">Plans</a></li>
+          <li><a href="jobs.html">Careers</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help & Support</a></li>
+          <li><a href="claims.html">Claims</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookies Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 PanInsura. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="scripts.js" defer></script>
+</body>
+
+</html>
+<script>
+function openModal(title, body) {
+  document.getElementById('modalTitle').innerText = title;
+  document.getElementById('modalBody').innerText = body;
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeModal(event) {
+  if (event.target.id === 'modal' || event.target.className === 'close') {
+    document.getElementById('modal').style.display = 'none';
+  }
+}

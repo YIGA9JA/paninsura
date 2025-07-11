@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insurance Application Form - PanInsura</title>
+  <meta name="description" content="Fill out your insurance application form with PanInsura to get covered seamlessly.">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .form-container { max-width: 600px; margin: 2rem auto; padding: 1rem; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);}
+    .form-container h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 1rem; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+    input, select, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+    button { background: #0077cc; color: #fff; padding: 0.75rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    button:disabled { background: #999; cursor: not-allowed; }
+    .toast { background: #4caf50; color: white; padding: 1rem; border-radius: 4px; display: none; margin-top: 1rem; text-align: center; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="brand-text">PANINSURA</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="jobs.html">Careers</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <section class="form-container">
+    <h1>Insurance Application Form</h1>
+    <form id="insuranceForm">
+      <div class="form-group">
+        <label for="insuranceType">Insurance Type</label>
+        <input type="text" id="insuranceType" name="insuranceType" readonly />
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input type="text" id="firstName" name="firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input type="text" id="lastName" name="lastName" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+      <div class="form-group">
+        <label for="address">Address *</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth *</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+      </div>
+      <div class="form-group">
+        <label for="documentUpload">Upload ID or Relevant Document *</label>
+        <input type="file" id="documentUpload" name="documentUpload" required />
+      </div>
+      <div class="form-group">
+        <label for="additionalInfo">Additional Information</label>
+        <textarea id="additionalInfo" name="additionalInfo" rows="4"></textarea>
+      </div>
+      <button type="submit" id="submitBtn">Submit Application</button>
+      <div id="toast" class="toast">Application submitted successfully!</div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-bottom">
+    <p>© 2025 PanInsura. All rights reserved.</p>
+  </div>
+</footer>
+
+<script type="module">
+// Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const insuranceType = urlParams.get('type') || "General Insurance";
+  document.getElementById("insuranceType").value = insuranceType;
+});
+
+const form = document.getElementById("insuranceForm");
+const toast = document.getElementById("toast");
+const submitBtn = document.getElementById("submitBtn");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
+
+  const file = document.getElementById("documentUpload").files[0];
+  const storageRef = ref(storage, `insurance_uploads/${Date.now()}_${file.name}`);
+
+  try {
+    await uploadBytes(storageRef, file);
+    const downloadURL = await getDownloadURL(storageRef);
+
+    await addDoc(collection(db, "insurance_applications"), {
+      insuranceType: document.getElementById("insuranceType").value,
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("address").value,
+      dateOfBirth: document.getElementById("dateOfBirth").value,
+      additionalInfo: document.getElementById("additionalInfo").value,
+      documentURL: downloadURL,
+      createdAt: serverTimestamp()
+    });
+
+    toast.style.display = "block";
+    form.reset();
+    submitBtn.textContent = "Submit Application";
+    submitBtn.disabled = false;
+
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 4000);
+
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Error submitting form, please try again.");
+    submitBtn.textContent = "Submit Application";
+    submitBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

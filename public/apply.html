@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply for Position | PanInsura</title>
+  <link rel="stylesheet" href="apply.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="simple-nav">
+    <a href="jobs.html" class="back-link">← Back to Careers</a>
+  </nav>
+
+  <div class="form-container">
+    <h1>Apply for This Position</h1>
+    <form id="applicationForm">
+      <input type="hidden" id="jobRole" name="jobRole" />
+
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="John Doe" required />
+      </div>
+
+      <div class="input-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address" placeholder="123 Street, City, Country" required />
+      </div>
+
+      <div class="input-group">
+        <label for="mobileNumber">Mobile Number</label>
+        <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="+234 812 345 6789" required />
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="input-group">
+        <label for="resume">Attach Your Resume</label>
+        <input type="url" id="resume" name="resume" placeholder="Link to your resume (Google Drive, etc.)" required />
+      </div>
+
+      <button type="submit">Submit Application</button>
+      <p id="statusMessage"></p>
+    </form>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabase = createClient(
+      "https://uclyrlzbhxhnegeypolp.supabase.co",
+      "YOUR_PUBLIC_ANON_KEY"
+    );
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobRole = urlParams.get("role") || "General Application";
+    document.getElementById("jobRole").value = jobRole;
+
+    const form = document.getElementById("applicationForm");
+    const statusMessage = document.getElementById("statusMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusMessage.textContent = "Submitting...";
+
+      const full_name = form.fullName.value.trim();
+      const address = form.address.value.trim();
+      const mobile_number = form.mobileNumber.value.trim();
+      const email = form.email.value.trim();
+      const job_role = jobRole;
+      const resume_url = form.resume.value.trim();
+
+      try {
+        const { error } = await supabase.from("applications").insert([
+          {
+            full_name,
+            address,
+            mobile_number,
+            email,
+            job_role,
+            resume_url,
+          },
+        ]);
+
+        if (error) {
+          console.error(error);
+          statusMessage.textContent = "❌ Submission failed. Please try again.";
+        } else {
+          statusMessage.textContent = "✅ Application submitted successfully!";
+          form.reset();
+        }
+      } catch (err) {
+        console.error(err);
+        statusMessage.textContent = "❌ An error occurred. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "hero": {
+    "title": "Easy Claims for Life's Not-So-Easy Moments",
+    "subtitle": "Get support and answers for every stage of your claim.",
+    "image": "/assets/images/image-intro-desktop.jpg"
+  },
+  "process_steps": [
+    {
+      "title": "File Your Claim",
+      "description": "Tell us what happened, upload photos, and stay connected.",
+      "image": "https://source.unsplash.com/400x300/?file,insurance",
+      "link": "contact.html"
+    },
+    {
+      "title": "Inspect Damage",
+      "description": "Fast, easy inspections through our trusted repair network.",
+      "image": "https://source.unsplash.com/400x300/?inspect,insurance",
+      "link": "contact.html"
+    },
+    {
+      "title": "Begin Repairs",
+      "description": "We work with your contractor to cover approved damage costs.",
+      "image": "https://source.unsplash.com/400x300/?repair,insurance",
+      "link": "contact.html"
+    },
+    {
+      "title": "Receive Payment",
+      "description": "Get paid or direct payment to your repair provider easily.",
+      "image": "https://source.unsplash.com/400x300/?payment,insurance",
+      "link": "contact.html"
+    }
+  ],
+  "claim_types": [
+    {"title": "Auto & Motorcycle", "description": "Collision, theft, and accident claims."},
+    {"title": "Home", "description": "Damage, theft, and weather-related claims."},
+    {"title": "Catastrophe", "description": "Support for severe weather and major incidents."},
+    {"title": "Condo", "description": "Claims specific to condo insurance policies."},
+    {"title": "Renters", "description": "Damage and loss claims for renters."},
+    {"title": "Business", "description": "Claims for small and medium enterprises."},
+    {"title": "Life Insurance", "description": "Easy processing for life insurance claims."},
+    {"title": "Phone Protection", "description": "Claims for lost or damaged devices."}
+  ],
+  "resources": [
+    {"title": "File or Track Claims", "description": "Manage your claim status from anywhere."},
+    {"title": "Disaster Recovery", "description": "Guidance to recover after severe events."},
+    {"title": "Vendor Services", "description": "Portal for medical and repair vendors."},
+    {"title": "Identity Restoration", "description": "Report fraud and access restoration services."}
+  ],
+  "cta": {
+    "title": "Need Help with a Claim?",
+    "subtitle": "Contact us to get started or track your claim with ease.",
+    "button_text": "Contact Support",
+    "button_link": "contact.html"
+  }
+}

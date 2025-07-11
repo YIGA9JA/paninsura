@@ -1,0 +1,37 @@
+/* index.css - PanInsura Home Page Specific Styles */
+
+.hero {
+    background: url('/assets/images/home-hero.webp') center/cover no-repeat;
+    color: #fff;
+}
+
+.featured-section {
+    background: var(--light-bg);
+    padding: 3em 1em;
+}
+
+.featured-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.featured-cards .card {
+    flex: 1 1 250px;
+}
+
+.testimonials {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.testimonials h2 {
+    color: #fff;
+}
+
+.testimonials .testimonial {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1em;
+    border-radius: 4px;
+}

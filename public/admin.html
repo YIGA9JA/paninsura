@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard | PanInsura</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <nav class="simple-nav">
+    <h1>PanInsura Applications Dashboard</h1>
+    <button id="logoutButton">Logout</button>
+  </nav>
+
+  <main>
+    <table id="applicationsTable">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Mobile Number</th>
+          <th>Job Role</th>
+          <th>Resume</th>
+          <th>Submitted At</th>
+        </tr>
+      </thead>
+      <tbody id="applicationsBody"></tbody>
+    </table>
+    <p id="statusMessage"></p>
+  </main>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabase = createClient(
+      "https://uclyrlzbhxhnegeypolp.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjbHlybHpiaHhobmVnZXlwb2xwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE4MjEyMTQsImV4cCI6MjA2NzM5NzIxNH0.7f3sV2b1MlI3cdL88dPh_dK2wY8VAoCoGfG09otY61g"
+    );
+
+    const applicationsBody = document.getElementById("applicationsBody");
+    const statusMessage = document.getElementById("statusMessage");
+
+    async function checkAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = "login.html";
+      }
+    }
+
+    async function fetchApplications() {
+      statusMessage.textContent = "Loading applications...";
+      const { data, error } = await supabase
+        .from("applications")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error(error);
+        statusMessage.textContent = "❌ Error loading applications.";
+        return;
+      }
+
+      statusMessage.textContent = "";
+      applicationsBody.innerHTML = "";
+
+      data.forEach((app) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${app.full_name}</td>
+          <td>${app.email}</td>
+          <td>${app.address}</td>
+          <td>${app.mobile_number}</td>
+          <td>${app.job_role}</td>
+          <td><a href="${app.resume_url}" target="_blank">View Resume</a></td>
+          <td>${new Date(app.created_at).toLocaleString()}</td>
+        `;
+        applicationsBody.appendChild(row);
+      });
+    }
+
+    document.getElementById("logoutButton").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.href = "login.html";
+    });
+
+    checkAuth();
+    fetchApplications();
+  </script>
+</body>
+</html>

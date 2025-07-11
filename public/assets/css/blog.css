@@ -1,0 +1,29 @@
+/* blog.css - PanInsura Blog Page Specific Styles */
+
+.hero {
+    background: url('/assets/images/blog-hero.webp') center/cover no-repeat;
+    color: #fff;
+}
+
+.blog-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5em;
+    padding: 2em 1em;
+}
+
+.blog-snippet {
+    background: var(--white);
+    padding: 1em;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.blog-snippet:hover {
+    transform: translateY(-5px);
+}
+
+.pagination {
+    margin: 2em 0;
+}

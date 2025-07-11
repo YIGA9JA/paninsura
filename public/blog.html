@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PanInsura Blog</title>
+  <meta name="description" content="Read the latest articles, tips, and insights from PanInsura. Stay informed about insurance, safety, and family protection.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="brand-text">PANINSURA</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<header class="blog-hero">
+  <h1>PanInsura Insights</h1>
+  <p>Stay updated with insurance tips, stories, and expert insights.</p>
+</header>
+
+<section class="blog-container" id="blogContainer">
+  <!-- Posts will auto-load here -->
+</section>
+
+<div id="blogModal" class="modal" onclick="closeBlogModal(event)">
+  <div class="modal-content">
+    <span class="close" onclick="closeBlogModal(event)">&times;</span>
+    <h2 id="blogModalTitle"></h2>
+    <p id="blogModalBody"></p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 PanInsura. All rights reserved.</p>
+</footer>
+
+<script src="blog.js" defer></script>
+</body>
+</html>

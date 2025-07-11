@@ -1,0 +1,53 @@
+/* services.css - PanInsura Services Page Specific Styles */
+
+.hero {
+    background: url('/assets/images/services-hero.webp') center/cover no-repeat;
+    color: #fff;
+}
+
+.feature-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    margin: 2em 0;
+}
+
+.feature-icons .icon-feature {
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 1em 2em;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.service-grid .card {
+    background: var(--white);
+    transition: transform 0.3s;
+}
+
+.service-grid .card:hover {
+    transform: translateY(-5px);
+}
+
+.comparison-table {
+    overflow-x: auto;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 0.75em;
+    border: 1px solid #ddd;
+}
+
+.case-studies .scroll-container {
+    display: flex;
+    gap: 1em;
+    overflow-x: auto;
+    padding: 1em 0;
+}

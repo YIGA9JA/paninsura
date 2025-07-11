@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | PanInsura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: #fff;
+      padding: 2em;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .form-container h1 {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      color: #333;
+    }
+    .input-group {
+      text-align: left;
+      margin-bottom: 1em;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+      color: #333;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.75em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border 0.3s;
+    }
+    .input-group input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 0.75em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #statusMessage {
+      margin-top: 1em;
+      font-size: 0.9em;
+      color: #d9534f;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Admin Login</h1>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="email">Admin Email</label>
+        <input type="email" id="email" name="email" placeholder="admin@paninsura.com" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="********" required>
+      </div>
+
+      <button type="submit">Login</button>
+      <p id="statusMessage"></p>
+    </form>
+  </div>
+
+<script type="module">
+// Import Supabase client
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+const supabaseUrl = 'https://uclyrlzbhxhnegeypolp.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjbHlybHpiaHhobmVnZXlwb2xwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE4MjEyMTQsImV4cCI6MjA2NzM5NzIxNH0.7f3sV2b1MlI3cdL88dPh_dK2wY8VAoCoGfG09otY61g'; // replace with your anon public key
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const form = document.getElementById('loginForm');
+const statusMessage = document.getElementById('statusMessage');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  statusMessage.style.color = '#333';
+  statusMessage.textContent = "Logging in...";
+
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    console.error(error);
+    statusMessage.style.color = '#d9534f';
+    statusMessage.textContent = "❌ Invalid email or password.";
+  } else {
+    statusMessage.style.color = '#28a745';
+    statusMessage.textContent = "✅ Login successful, redirecting...";
+    setTimeout(() => {
+      window.location.href = "admin.html";
+    }, 1000);
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+/* help.css - PanInsura Help Page Specific Styles */
+
+.hero {
+    background: url('/assets/images/help-hero.webp') center/cover no-repeat;
+    color: #fff;
+}
+
+.faq-section {
+    max-width: 800px;
+    margin: 2em auto;
+}
+
+.accordion-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 1em;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background: var(--light-bg);
+    transition: max-height 0.3s ease;
+    padding: 0 1em;
+}
+
+.accordion-btn.active + .accordion-content {
+    max-height: 300px; /* adjust as needed */
+    padding: 1em;
+}
