@@ -187,6 +187,15 @@
   <h2>Ready to Get Covered?</h2>
   <p>Start your journey with PanInsura and protect what matters most today.</p>
   <a href="contact.html" class="btn">Contact Us</a>
+   <div class="newsletter-section">
+  <h2>Subscribe to Our Newsletter</h2>
+  <p>Get updates, insurance tips, and exclusive offers directly in your inbox.</p>
+  <form id="newsletterForm" onsubmit="event.preventDefault(); subscribeNewsletter();">
+    <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+    <button type="submit" class="btn">Subscribe</button>
+    <p id="newsletterMessage" style="margin-top:0.5em;"></p>
+  </form>
+</div>
 </section>
 
 </main>
@@ -201,6 +210,7 @@
 </div>
 
 <!-- Footer -->
+ 
 <footer>
   <div class="footer-container">
     <div class="footer-brand">
@@ -302,6 +312,19 @@ window.addEventListener('click', (e) => {
 document.getElementById('menu-toggle').addEventListener('click', () => {
   document.getElementById('nav-links').classList.toggle('active');
 });
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletterEmail').value;
+  const message = document.getElementById('newsletterMessage');
+  if (email) {
+    message.textContent = 'Thank you for subscribing!';
+    message.style.color = '#0f0';
+    document.getElementById('newsletterForm').reset();
+    // TODO: Connect to backend / Mailchimp for real capture
+  } else {
+    message.textContent = 'Please enter a valid email.';
+    message.style.color = '#f00';
+  }
+}
 </script>
 
 </body>

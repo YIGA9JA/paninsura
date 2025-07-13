@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us | PanInsura</title>
   <meta name="description" content="Contact PanInsura today to get assistance, file claims, and get expert insurance advice across Europe.">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="assets/css/contact.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="/public/assets/images/paninsura-logo.png" type="image/png">
 </head>
@@ -14,7 +14,7 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar">
-  <a href="index.html" class="brand-text">     PANINSURA</a>
+  <a href="index.html" class="brand-text">PANINSURA</a>
   <div class="menu-toggle" id="menuToggle">
     <div></div><div></div><div></div>
   </div>
@@ -27,7 +27,7 @@
   </div>
 </nav>
 
-<main id="main-content">
+<main>
   <!-- Hero Section -->
   <section class="hero">
     <img src="https://static.vecteezy.com/system/resources/thumbnails/005/021/376/small_2x/contact-us-business-concept-idea-free-photo.jpg" alt="Contact PanInsura" class="hero-img">
@@ -37,7 +37,7 @@
     </div>
   </section>
 
-  <!-- Contact Info Section -->
+  <!-- Contact Info -->
   <section class="contact-info">
     <div class="info-block">
       <i class="ti ti-phone"></i>
@@ -74,7 +74,7 @@
     </form>
   </section>
 
-  <!-- Google Map Section -->
+  <!-- Google Map -->
   <section class="map-section">
     <h2>Our Location</h2>
     <iframe 
@@ -83,7 +83,7 @@
     </iframe>
   </section>
 
-  <!-- FAQ Accordion Section -->
+  <!-- FAQ Accordion -->
   <section class="faq-section">
     <h2>Frequently Asked Questions</h2>
     <div class="accordion">
@@ -108,8 +108,8 @@
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section container">
+  <!-- CTA -->
+  <section class="cta-section">
     <div class="cta-content">
       <h2>Ready to Get Covered?</h2>
       <p>Start your journey with PanInsura and protect what matters most today.</p>
@@ -122,7 +122,7 @@
 <footer>
   <div class="footer-container">
     <div class="footer-brand">
-  <a href="index.html" class="brand-text">     PANINSURA</a>
+      <a href="index.html" class="brand-text">PANINSURA</a>
       <p>Protecting what matters most with innovative insurance solutions across Europe.</p>
       <div class="social-icons">
         <a href="#"><i class="ti ti-brand-facebook"></i></a>
@@ -166,6 +166,28 @@
   </div>
 </footer>
 
-<script src="scripts.js" defer></script>
+<script>
+  // Toggle navigation
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // FAQ Accordion
+  const accordionBtns = document.querySelectorAll('.accordion-btn');
+  accordionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      const content = btn.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+
 </body>
 </html>

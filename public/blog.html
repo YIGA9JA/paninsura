@@ -6,41 +6,98 @@
   <title>PanInsura Blog</title>
   <meta name="description" content="Read the latest articles, tips, and insights from PanInsura. Stay informed about insurance, safety, and family protection.">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="blog.css">
 </head>
 <body>
 
+<!-- Navbar -->
 <nav class="navbar">
-  <div class="brand-text">PANINSURA</div>
-  <div class="nav-links">
+  <a href="index.html" class="brand-text">PANINSURA</a>
+  <div class="menu-toggle" id="menuToggle">
+    <div></div><div></div><div></div>
+  </div>
+  <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
+    <a href="jobs.html">Careers</a>
     <a href="blog.html" class="active">Blog</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
+<!-- Hero Section -->
 <header class="blog-hero">
   <h1>PanInsura Insights</h1>
   <p>Stay updated with insurance tips, stories, and expert insights.</p>
 </header>
 
+<!-- Blog Container -->
 <section class="blog-container" id="blogContainer">
-  <!-- Posts will auto-load here -->
+  <!-- Posts load dynamically -->
 </section>
 
+<!-- Enhanced Modal -->
 <div id="blogModal" class="modal" onclick="closeBlogModal(event)">
   <div class="modal-content">
     <span class="close" onclick="closeBlogModal(event)">&times;</span>
+    <img id="blogModalImage" alt="" class="modal-image">
     <h2 id="blogModalTitle"></h2>
+    <div id="blogModalTags" class="modal-tags"></div>
     <p id="blogModalBody"></p>
+    <div id="blogModalShare" class="modal-share"></div>
   </div>
 </div>
 
+<!-- Footer -->
 <footer>
-  <p>© 2025 PanInsura. All rights reserved.</p>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <a href="index.html" class="brand-text">PANINSURA</a>
+      <p>Protecting what matters most with innovative insurance solutions across Europe.</p>
+      <div class="social-icons">
+        <a href="#"><i class="ti ti-brand-facebook"></i></a>
+        <a href="#"><i class="ti ti-brand-x"></i></a>
+        <a href="#"><i class="ti ti-brand-linkedin"></i></a>
+        <a href="#"><i class="ti ti-brand-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="plans.html">Plans</a></li>
+          <li><a href="jobs.html">Careers</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Claims</a></li>
+          <li><a href="#">Policy Renewal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookies Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 PanInsura. All rights reserved. Designed for excellence across Europe.</p>
+  </div>
 </footer>
 
+<script src="scripts.js" defer></script>
 <script src="blog.js" defer></script>
 </body>
 </html>
